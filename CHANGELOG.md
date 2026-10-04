@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.3] - 2026-10-04
+### Added
+- Added `skill-writing` skill
+- Added `writing-style` skill
+
+### Changed
+- Updated `go` skill to use `writing-style` skill
+- Updated `python` skill use `writing-style` skill
+
 ## [0.1.2] - 2026-10-04
 ### Changed
 - Renamed named used inside `write-go` skill file to `go`
