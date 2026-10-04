@@ -12,8 +12,9 @@ SHELL := /bin/bash
 ARCHIVE_PATH := skills.tar.gz
 
 # Identify top-level directories containing a skill.
-SKILL_PATHS := $(wildcard agent-skills/*/)
+SKILL_PATHS := $(wildcard skills/*/)
 SKILL_COUNT := $(words $(SKILL_PATHS))
+SKILL_WORD  := $(if $(filter 1,$(SKILL_COUNT)),skill,skills)
 
 # ---------------------------------------------------------
 # Create the package.
@@ -22,9 +23,9 @@ SKILL_COUNT := $(words $(SKILL_PATHS))
 .PHONY: package
 .SILENT: package
 package:
-	echo "[*] Creating agent skills package"
+	echo "[*] Creating package"
 	tar -czf "$(ARCHIVE_PATH)" $(SKILL_PATHS) LICENSE
-	echo "[+] Packaged $(SKILL_COUNT) agent $(if $(filter 1,$(SKILL_COUNT)),skill,skills) into $(ARCHIVE_PATH)"
+	echo "[+] Packaged $(SKILL_COUNT) $(SKILL_WORD)"
 
 # ---------------------------------------------------------
 # Remove the release archive.

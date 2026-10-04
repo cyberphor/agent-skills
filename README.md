@@ -1,2 +1,2 @@
-# `agent-skills`
-Agent skills that represent how I like to approach software-related problems. 
+# `skills`
+Documentation AI agents can use to approach software-related problems like how I would. 
