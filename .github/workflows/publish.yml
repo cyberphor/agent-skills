@@ -24,7 +24,7 @@ jobs:
         with:
           name: ${{ github.ref_name }}
           generate_release_notes: true
-          files: dist/skills.tar.gz
+          files: skills.tar.gz
           fail_on_unmatched_files: true
           draft: false
           prerelease: ${{ contains(github.ref_name, '-rc') || contains(github.ref_name, '-beta') }}
