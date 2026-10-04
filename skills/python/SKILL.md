@@ -7,6 +7,10 @@ description: Write, revise, or review Python code in a concise, explicit, servic
 
 Use this skill to produce Python that is explicit, readable, typed, operationally simple, and consistent with the surrounding repository.
 
+## Prose
+
+Read and apply the `writing-style` skill from the authoritative skill source when drafting or revising READMEs, documentation, command help, explanatory comments, or docstrings. Reuse it if already loaded. Preserve Python comment and docstring formats and the code conventions below.
+
 ## Precedence
 
 Follow rules in this order:
@@ -229,7 +233,7 @@ Respect the project's formatter, linter, type checker, dependency manager, and t
 
 ## Generic Examples
 
-Read [references/code-examples.md](references/examples.md) when concrete examples would help with a new module, service entrypoint, async integration, parser, API route, or test.
+Read [references/code-examples.md](references/code-examples.md) when concrete examples would help with a new module, service entrypoint, async integration, parser, API route, or test.
 
 The examples are patterns, not templates to copy mechanically. Adapt names, frameworks, error handling, and configuration to the repository.
 
