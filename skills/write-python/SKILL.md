@@ -229,7 +229,7 @@ Respect the project's formatter, linter, type checker, dependency manager, and t
 
 ## Generic Examples
 
-Read [references/code-examples.md](references/code-examples.md) when concrete examples would help with a new module, service entrypoint, async integration, parser, API route, or test.
+Read [references/code-examples.md](references/examples.md) when concrete examples would help with a new module, service entrypoint, async integration, parser, API route, or test.
 
 The examples are patterns, not templates to copy mechanically. Adapt names, frameworks, error handling, and configuration to the repository.
 
