@@ -1,5 +1,5 @@
 ---
-name: write-python
+name: python
 description: Write, revise, or review Python code in a concise, explicit, service-oriented house style. Use for Python modules, APIs, MCP servers, automation, integrations, parsers, and tests when creating or modifying Python code and no stronger repository-local convention overrides it.
 ---
 

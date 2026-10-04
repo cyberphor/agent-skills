@@ -1,5 +1,5 @@
 ---
-name: write-go
+name: go
 description: Write, revise, or review Go code in our preferred style. Use this skill whenever creating or modifying Go files, examples, tests, command-line tools, APIs, MCP servers, or code snippets.
 ---
 
