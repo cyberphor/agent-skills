@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.4] - 2026-10-04
+### Added
+- Added `makefiles` skill
+
 ## [0.1.3] - 2026-10-04
 ### Added
 - Added `skill-writing` skill
