@@ -13,7 +13,9 @@ Read and apply the `writing-style` skill from the authoritative skill source whe
 
 ## Package Organization
 
-Keep `main.go` minimal: delegate to the command or application package and handle the process exit. Put execution and orchestration functions in those packages rather than in `main.go`.
+Keep `main.go` minimal: delegate to the `cmd` or application package and handle the process exit. Put execution and orchestration functions in those packages rather than in `main.go`.
+
+Prefer conventional short package names such as `cmd` rather than `command`. Preserve existing package names and public interfaces when modifying a repository; do not rename unrelated packages to enforce this preference.
 
 Organize code into packages by responsibility. Keep all struct definitions in a shared `models` or `types` package; choose one name consistently. Files defining structs should contain only those definitions and functions or methods that add functionality to those types. Keep configuration parsing, API requests, and report orchestration in their responsible packages. This organization does not require a separate `go.mod` for each package.
 
@@ -56,7 +58,7 @@ Create a new error when there is no underlying error, such as invalid input or a
 
 ## Readability
 
-Use descriptive, spelled-out identifiers, such as `configuration` rather than `cfg`. Preserve established initialisms and conventional Go names such as `err`.
+Use descriptive, spelled-out variable and function names, such as `configuration` rather than `cfg`. Preserve established initialisms and conventional Go names such as `err`. Conventional short package names such as `cmd` are an exception to the spelled-out naming preference.
 
 Give each logical step its own blank-line-separated paragraph. Precede non-obvious steps with a short sentence-case comment ending in a period that explains why, not just what. Give every exported function a doc comment in the form `// FuncName verb-phrases what it does.`
 
@@ -87,6 +89,12 @@ type System struct {
 ## Dependencies
 
 Favor the standard library, with Cobra preferred for command-line tools. Use `net/http` and `net/url` directly instead of HTTP client wrapper libraries. Only bring in another third-party package with clear justification.
+
+## Makefiles
+
+Read and apply the `makefiles` skill from the authoritative skill source when creating or modifying a Makefile. Reuse it if already loaded.
+
+Include a root `Makefile` when creating a Go project. When changing a project, reuse its existing Makefile and update affected tasks. Expose applicable routine tasks such as `build`, `run`, `test`, `check`, and `format` using the repository's existing tools and target conventions. Include only tasks that apply to the project; standalone snippets do not require a Makefile.
 
 ## Checklist
 

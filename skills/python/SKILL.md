@@ -29,13 +29,17 @@ Before writing code, inspect the nearest relevant Python files plus `pyproject.t
 Prefer simple, direct code over abstraction for its own sake.
 
 - Keep functions focused on one clear responsibility.
-- Use descriptive names rather than abbreviations.
+- Use descriptive variable and function names rather than abbreviations. Conventional short package and module names such as `cmd` are an exception.
 - Prefer guard clauses when they reduce nesting.
 - Avoid new classes, wrappers, factories, compatibility layers, dependencies, and configuration options unless they solve a concrete requirement.
 - Keep orchestration code easy to read from top to bottom.
 - Preserve asynchronous behavior in asynchronous code.
 - Use framework-native patterns instead of recreating functionality manually.
 - Keep side effects visible and close to the code that initiates them.
+
+## Package and Module Names
+
+Prefer conventional short package and module names such as `cmd` rather than `command`. Preserve existing names and public interfaces when modifying a repository; do not rename unrelated packages or modules to enforce this preference.
 
 ## Imports
 
@@ -230,6 +234,12 @@ Prefer the Python standard library when it cleanly solves the problem.
 When a dependency is already present and is the repository's established abstraction, use it rather than introducing a competing implementation.
 
 Respect the project's formatter, linter, type checker, dependency manager, and test runner. Do not silently replace project tooling.
+
+## Makefiles
+
+Read and apply the `makefiles` skill from the authoritative skill source when creating or modifying a Makefile. Reuse it if already loaded.
+
+Include a root `Makefile` when creating a Python project. When changing a project, reuse its existing Makefile and update affected tasks. Expose applicable routine tasks such as `build`, `run`, `test`, `check`, and `format` using the repository's existing tools and target conventions. Include only tasks that apply to the project; standalone snippets do not require a Makefile.
 
 ## Generic Examples
 
