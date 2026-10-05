@@ -11,6 +11,8 @@ Write explanations that help the reader understand a concept and use it. Keep th
 
 **Direct.** Use matter-of-fact sentences and concrete verbs. Say what something is or what the reader should do. Remove promotional language, personal storytelling, and introductions that delay the explanation.
 
+Avoid semicolons in prose. Use separate sentences or natural conjunctions. Preserve semicolons required by code or technical syntax.
+
 **Practical.** Connect an instruction to its useful result. Prefer “Save the settings. The application uses them the next time it starts.” over vague claims about improving the experience. Keep sentences short enough to follow, without removing necessary reasoning.
 
 **Approachable.** Use “you” and “your” when addressing the reader. Give instructions with verbs such as Create, Activate, Install, or Check. Explain unfamiliar concepts without assuming expertise or talking down to the reader.
@@ -27,7 +29,7 @@ Write explanations that help the reader understand a concept and use it. Keep th
 
 ## Structure
 
-Use H1 for the title and H2 for sections. Use bold labels for deeper subdivisions instead of H3 or smaller headings. Choose sections that fit the subject; do not impose the same layout on every document.
+Use H1 for the title and H2 for sections. Use bold labels for deeper subdivisions instead of H3 or smaller headings. Choose sections that fit the subject. Do not impose the same layout on every document.
 
 Group conceptual explanations under short bold labels. Use parallel bullets for related properties, questions, or choices. Organize troubleshooting by the task or symptom the reader recognizes. Put inline names and language-tagged code blocks next to the explanation they support.
 

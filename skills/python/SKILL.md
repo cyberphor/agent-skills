@@ -1,11 +1,11 @@
 ---
 name: python
-description: Write, revise, or review Python code in a concise, explicit, service-oriented house style. Use for Python modules, APIs, MCP servers, automation, integrations, parsers, and tests when creating or modifying Python code and no stronger repository-local convention overrides it.
+description: Write, revise, or review Python code in our preferred concise, explicit, service-oriented style. Use for Python modules, APIs, MCP servers, automation, integrations, parsers, and tests when creating or modifying Python code.
 ---
 
 # Python Writing Style
 
-Use this skill to produce Python that is explicit, readable, typed, operationally simple, and consistent with the surrounding repository.
+Use this skill to produce Python that is explicit, readable, typed, and operationally simple.
 
 ## Prose
 
@@ -17,10 +17,10 @@ Follow rules in this order:
 
 1. The user's explicit instructions.
 2. Repository-local instructions and configuration.
-3. Established conventions in the files being changed.
-4. This skill.
+3. This skill.
+4. Established conventions where this skill leaves a choice open.
 
-Do not rewrite unrelated code only to enforce this style. Prefer the smallest change that preserves existing behavior, architecture, public interfaces, and tooling.
+Apply these preferences to the functions and code being changed, including small directly related changes needed for consistency. Established inconsistent style alone does not override these preferences. Preserve behavior, public interfaces, and required tooling unless the task calls for changing them. Avoid unrelated project-wide renames, restructuring, or reformatting.
 
 Before writing code, inspect the nearest relevant Python files plus `pyproject.toml`, tests, and lint or formatting configuration when available.
 
@@ -39,7 +39,7 @@ Prefer simple, direct code over abstraction for its own sake.
 
 ## Package and Module Names
 
-Prefer conventional short package and module names such as `cmd` rather than `command`. Preserve existing names and public interfaces when modifying a repository; do not rename unrelated packages or modules to enforce this preference.
+Prefer conventional short package and module names such as `cmd` rather than `command`. Preserve existing names and public interfaces when modifying a repository. Do not rename unrelated packages or modules to enforce this preference.
 
 ## Imports
 
@@ -113,7 +113,7 @@ Prefer `pathlib.Path` for filesystem work.
 
 Use asynchronous libraries consistently inside asynchronous workflows.
 
-- Reuse an async client when lifecycle and scope make that practical; otherwise use a clearly scoped context manager.
+- Reuse an async client when lifecycle and scope make that practical. Otherwise use a clearly scoped context manager.
 - Call `raise_for_status()` before consuming successful response data.
 - Use explicit request parameters and headers.
 - Use reasonable timeouts unless the surrounding framework manages them.
@@ -239,7 +239,7 @@ Respect the project's formatter, linter, type checker, dependency manager, and t
 
 Read and apply the `makefiles` skill from the authoritative skill source when creating or modifying a Makefile. Reuse it if already loaded.
 
-Include a root `Makefile` when creating a Python project. When changing a project, reuse its existing Makefile and update affected tasks. Expose applicable routine tasks such as `build`, `run`, `test`, `check`, and `format` using the repository's existing tools and target conventions. Include only tasks that apply to the project; standalone snippets do not require a Makefile.
+Include a root `Makefile` when creating a Python project. When changing a project, reuse its existing Makefile and align affected tasks with the `makefiles` skill. Expose applicable routine tasks such as `build`, `run`, `test`, `check`, and `format` using the repository's required tools. Include only tasks that apply to the project. Standalone snippets do not require a Makefile.
 
 ## Generic Examples
 
@@ -251,7 +251,7 @@ The examples are patterns, not templates to copy mechanically. Adapt names, fram
 
 Before finishing a Python change:
 
-- Confirm the change matches nearby code and repository configuration.
+- Confirm touched code follows these preferences and explicit repository instructions and configuration.
 - Remove unused imports and dead code introduced by the change.
 - Confirm types are useful and accurate.
 - Check comments and docstrings for signal rather than narration.

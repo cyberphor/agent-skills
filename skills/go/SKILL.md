@@ -7,6 +7,10 @@ description: Write, revise, or review Go code in our preferred style. Use this s
 
 Write Go code with explicit control flow, focused packages, and consistent conventions.
 
+## Incremental Adoption
+
+Inspect relevant code and project configuration before editing. Apply these preferences to the functions and code being changed, including small directly related changes needed for consistency. Established inconsistent style alone does not override these preferences. Respect explicit user and repository instructions and configuration. Preserve behavior, public interfaces, and required tooling unless the task calls for changing them. Avoid unrelated project-wide renames, restructuring, or reformatting.
+
 ## Prose
 
 Read and apply the `writing-style` skill from the authoritative skill source when drafting or revising READMEs, documentation, command help, or explanatory comments. Reuse it if already loaded. Preserve Go doc-comment syntax and the code conventions below.
@@ -15,27 +19,28 @@ Read and apply the `writing-style` skill from the authoritative skill source whe
 
 Keep `main.go` minimal: delegate to the `cmd` or application package and handle the process exit. Put execution and orchestration functions in those packages rather than in `main.go`.
 
-Prefer conventional short package names such as `cmd` rather than `command`. Preserve existing package names and public interfaces when modifying a repository; do not rename unrelated packages to enforce this preference.
+Prefer conventional short package names such as `cmd` rather than `command`. Preserve existing package names and public interfaces when modifying a repository. Do not rename unrelated packages to enforce this preference.
 
-Organize code into packages by responsibility. Keep all struct definitions in a shared `models` or `types` package; choose one name consistently. Files defining structs should contain only those definitions and functions or methods that add functionality to those types. Keep configuration parsing, API requests, and report orchestration in their responsible packages. This organization does not require a separate `go.mod` for each package.
+Organize code into packages by responsibility. Keep all struct definitions in a shared `models` or `types` package. Choose one name consistently. Files defining structs should contain only those definitions and functions or methods that add functionality to those types. Keep configuration parsing, API requests, and report orchestration in their responsible packages. This organization does not require a separate `go.mod` for each package.
 
 ## Variable Declarations
 
 Collect every local variable into a single `var (...)` block at the top of the function, one per line, ordered alphabetically, types aligned via gofmt. Assign with `=` afterward rather than declaring inline with `:=` throughout the function body.
 
 ```go
-func getSystems(cmd *cobra.Command, args []string) error {
+package names
+
+import "strings"
+
+// Normalize trims a name and converts it to lowercase.
+func Normalize(name string) string {
 	var (
-		endpoint string
-		err      error
-		params   url.Values
-		response *http.Response
-		system   models.System
-		systems  []models.System
+		normalized string
 	)
 
-	params = url.Values{}
-	...
+	normalized = strings.TrimSpace(name)
+
+	return strings.ToLower(normalized)
 }
 ```
 
@@ -52,9 +57,9 @@ if err != nil {
 
 Compose small unexported helper functions that each do one thing and return `(T, error)`, chaining them rather than writing one large function.
 
-Return existing errors unchanged. Do not add contextual text, wrap them, or reconstruct them from their messages. When an operation must retain multiple failures, preserve the original errors, using `errors.Join` when aggregation is needed; do not add prefixes or discard errors. Simple operations should return their single error directly.
+Return existing errors unchanged. Do not add contextual text, wrap them, or reconstruct them from their messages. When an operation must retain multiple failures, preserve the original errors, using `errors.Join` when aggregation is needed. Do not add prefixes or discard errors. Simple operations should return their single error directly.
 
-Create a new error when there is no underlying error, such as invalid input or an unsuccessful HTTP status. Use a lowercase message with no trailing period; `fmt.Errorf` is appropriate when the new message requires formatting.
+Create a new error when there is no underlying error, such as invalid input or an unsuccessful HTTP status. Use a lowercase message with no trailing period. Use `fmt.Errorf` when the new message requires formatting.
 
 ## Readability
 
@@ -94,11 +99,15 @@ Favor the standard library, with Cobra preferred for command-line tools. Use `ne
 
 Read and apply the `makefiles` skill from the authoritative skill source when creating or modifying a Makefile. Reuse it if already loaded.
 
-Include a root `Makefile` when creating a Go project. When changing a project, reuse its existing Makefile and update affected tasks. Expose applicable routine tasks such as `build`, `run`, `test`, `check`, and `format` using the repository's existing tools and target conventions. Include only tasks that apply to the project; standalone snippets do not require a Makefile.
+Include a root `Makefile` when creating a Go project. When changing a project, reuse its existing Makefile and align affected tasks with the `makefiles` skill. Expose applicable routine tasks such as `build`, `run`, `test`, `check`, and `format` using the repository's required tools. Include only tasks that apply to the project. Standalone snippets do not require a Makefile.
+
+## Generic Examples
+
+Read [the code examples](references/code-examples.md) when implementing an entrypoint, shared model, helper chain, or HTTP integration. Adapt the examples to the project's behavior and configuration.
 
 ## Checklist
 
-- No inline `:=` declarations when a function has more than one local variable.
+- Every local variable is declared in one alphabetical `var (...)` block at the top of its function, with no inline `:=` declarations.
 - No error silently dropped or checked more than one call late.
 - Existing errors are returned or aggregated unchanged.
 - No `else` following a block that ends in `return`.
