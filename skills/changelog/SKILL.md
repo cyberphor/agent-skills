@@ -5,7 +5,7 @@ description: Create or maintain repository CHANGELOG.md files in the preferred s
 
 # Changelog
 
-Read the existing changelog, relevant changes, and repository instructions before editing. Read and apply the `writing-style` skill from the authoritative skill source for entry wording, rather than changelog structure. Reuse it if already loaded.
+Read the existing changelog, relevant changes, and repository instructions before editing. Read and apply `writing-style` from the active skill catalog or [sibling skill](../writing-style/SKILL.md) for entry wording, rather than changelog structure. Reuse it if already loaded.
 
 ## Format
 

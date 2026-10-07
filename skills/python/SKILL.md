@@ -1,6 +1,6 @@
 ---
 name: python
-description: Write, revise, or review Python code in our preferred concise, explicit, service-oriented style. Use for Python modules, APIs, MCP servers, automation, integrations, parsers, and tests when creating or modifying Python code.
+description: Write, revise, or review Python source, tests, and code examples in the user's concise, explicit style. Use when implementing or changing Python modules, services, parsers, or automation, including Python changes within a larger task.
 ---
 
 # Python Writing Style
@@ -9,7 +9,7 @@ Use this skill to produce Python that is explicit, readable, typed, and operatio
 
 ## Prose
 
-Read and apply the `writing-style` skill from the authoritative skill source when drafting or revising READMEs, documentation, command help, explanatory comments, or docstrings. Reuse it if already loaded. Preserve Python comment and docstring formats and the code conventions below.
+Read and apply `writing-style` from the active skill catalog or [sibling skill](../writing-style/SKILL.md) when drafting or revising READMEs, documentation, command help, explanatory comments, or docstrings. Reuse it if already loaded. Preserve Python comment and docstring formats and the code conventions below.
 
 ## Precedence
 
@@ -235,9 +235,11 @@ When a dependency is already present and is the repository's established abstrac
 
 Respect the project's formatter, linter, type checker, dependency manager, and test runner. Do not silently replace project tooling.
 
+Prefer `uv` for Python dependency and environment management and project commands unless explicit user or repository requirements specify another tool. Use `uv sync` to prepare the project environment and `uv run` to execute commands within it.
+
 ## Makefiles
 
-Read and apply the `makefiles` skill from the authoritative skill source when creating or modifying a Makefile. Reuse it if already loaded.
+Read and apply `makefiles` from the active skill catalog or [sibling skill](../makefiles/SKILL.md) when creating or modifying a Makefile. Reuse it if already loaded.
 
 Include a root `Makefile` when creating a Python project. When changing a project, reuse its existing Makefile and align affected tasks with the `makefiles` skill. Expose applicable routine tasks such as `build`, `run`, `test`, `check`, and `format` using the repository's required tools. Include only tasks that apply to the project. Standalone snippets do not require a Makefile.
 

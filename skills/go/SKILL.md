@@ -1,6 +1,6 @@
 ---
 name: go
-description: Write, revise, or review Go code in our preferred style. Use this skill whenever creating or modifying Go files, examples, tests, command-line tools, APIs, MCP servers, or code snippets.
+description: Write, revise, or review Go source, tests, and code examples in the user's preferred style. Use when implementing or changing Go programs, packages, or command-line tools, including Go changes within a larger task.
 ---
 
 # Go Writing Style
@@ -13,7 +13,7 @@ Inspect relevant code and project configuration before editing. Apply these pref
 
 ## Prose
 
-Read and apply the `writing-style` skill from the authoritative skill source when drafting or revising READMEs, documentation, command help, or explanatory comments. Reuse it if already loaded. Preserve Go doc-comment syntax and the code conventions below.
+Read and apply `writing-style` from the active skill catalog or [sibling skill](../writing-style/SKILL.md) when drafting or revising READMEs, documentation, command help, or explanatory comments. Reuse it if already loaded. Preserve Go doc-comment syntax and the code conventions below.
 
 ## Package Organization
 
@@ -97,15 +97,17 @@ Favor the standard library, with Cobra preferred for command-line tools. Use `ne
 
 ## Makefiles
 
-Read and apply the `makefiles` skill from the authoritative skill source when creating or modifying a Makefile. Reuse it if already loaded.
+Read and apply `makefiles` from the active skill catalog or [sibling skill](../makefiles/SKILL.md) when creating or modifying a Makefile. Reuse it if already loaded.
 
-Include a root `Makefile` when creating a Go project. When changing a project, reuse its existing Makefile and align affected tasks with the `makefiles` skill. Expose applicable routine tasks such as `build`, `run`, `test`, `check`, and `format` using the repository's required tools. Include only tasks that apply to the project. Standalone snippets do not require a Makefile.
+Include a root `Makefile` when creating a Go project. When changing a project, reuse its existing Makefile and align affected tasks with the `makefiles` skill. Keep the `build` target name and prefer `go install -ldflags="-s -w" .` instead of `go build` for programs whose main package is in the module root. Use the actual main-package path when it lives elsewhere. Preserve required linker flags and artifact output contracts when installation would not satisfy them. Omit `run` targets and `go run` recipes by default. Expose applicable routine tasks such as `build`, `test`, `check`, and `format` using the repository's required tools. Include only tasks that apply to the project. Standalone snippets do not require a Makefile.
 
 ## Generic Examples
 
 Read [the code examples](references/code-examples.md) when implementing an entrypoint, shared model, helper chain, or HTTP integration. Adapt the examples to the project's behavior and configuration.
 
 ## Checklist
+
+Run `gofmt` on changed Go files and the repository's relevant checks and tests. Use `go vet` and targeted `go test` when no project-specific check replaces them. Report checks actually completed and any environment limitations.
 
 - Every local variable is declared in one alphabetical `var (...)` block at the top of its function, with no inline `:=` declarations.
 - No error silently dropped or checked more than one call late.

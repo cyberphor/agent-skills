@@ -7,7 +7,7 @@ description: Create, revise, or review Makefiles in our preferred style. Use whe
 
 Use Makefiles as a readable entrypoint for routine project tasks. Inspect the existing Makefile, project configuration, and invoked tools before editing. Align targets being changed with these preferences, including small directly related changes needed for consistency. Established inconsistent style alone does not override these preferences. Respect explicit user and repository instructions and configuration. Preserve target interfaces, required tooling, and behavior unless the relevant preference or task calls for a change. Avoid unrelated project-wide target renames, restructuring, or reformatting.
 
-Read and apply the `writing-style` skill from the authoritative skill source when writing comments or task descriptions. Reuse it if already loaded.
+Read and apply `writing-style` from the active skill catalog or [sibling skill](../writing-style/SKILL.md) when writing comments or task descriptions. Reuse it if already loaded.
 
 ## Layout
 
@@ -32,7 +32,7 @@ BUILD_CONTEXT ?= src
 .SILENT: check
 check:
 	echo "[*] Checking $(APP)'s source code quality"
-	ruff check "$(BUILD_CONTEXT)"
+	uv run ruff check "$(BUILD_CONTEXT)"
 ```
 
 Use concise `echo "[*] ..."` progress messages for multi-step or quiet tasks. Silence command echoing while leaving tool output and failures visible. Avoid redundant `@` prefixes on targets covered by `.SILENT`.
@@ -64,11 +64,11 @@ Let failed commands fail the target. Avoid blanket `|| true`, ignored errors, an
 
 Include only workflows supported by the project. Reuse established targets such as `check`, `format`, `build`, and `update`. Suffix container tasks when that distinguishes them from local tasks.
 
-**Go.** For a new Go program Makefile, set `.DEFAULT_GOAL := build` and use `go install -ldflags="-s -w" .` in `build`. When an existing build target is in scope, align it with this install convention when applicable, preserving required linker flags, package paths, and output contracts. Retain artifact-building commands when installation would not satisfy the project's required outputs. Add version injection only when the program supports it, using the actual module path and symbol. Do not add timestamp generation or parse-time shell commands by default. Keep dependency upgrades in an explicit `update` task that runs `go get -u ./...` followed by `go mod tidy`, rather than in an ordinary build.
+**Go.** For a new Go program Makefile, set `.DEFAULT_GOAL := build` and use `go install -ldflags="-s -w" .` in `build`. Use the actual main-package path when it lives outside the module root. Keep the `build` target name and omit `run` targets and `go run` recipes by default. When an existing build target is in scope, align it with this install convention when applicable, preserving required linker flags, package paths, and output contracts. Retain artifact-building commands when installation would not satisfy the project's required outputs. Add version injection only when the program supports it, using the actual module path and symbol. Do not add timestamp generation or parse-time shell commands by default. Keep dependency upgrades in an explicit `update` task that runs `go get -u ./...` followed by `go mod tidy`, rather than in an ordinary build.
 
 Read [the Go example](references/go-projects.md) when creating or revising a Go program's build and dependency update tasks.
 
-**Python.** In projects using uv, run `uv lock` in the appropriate project directory and `uv run` for project commands. Use Ruff for checks and formatting when configured. Lockfile updates and fixes are mutating tasks, not universal build prerequisites.
+**Python.** Prefer `uv` for dependencies, environments, and project commands unless explicit user or repository requirements specify another tool. Use `uv sync` to prepare the project environment, `uv lock` for explicit lockfile updates, and `uv run` for project commands in the appropriate project directory. Use Ruff for checks and formatting when configured. Lockfile updates and fixes are mutating tasks, not universal build prerequisites.
 
 **Containers.** Use Docker Compose for configured services. Centralize repeated arguments when useful, expose a configurable profile, and provide applicable build, start, stop, status, and test tasks. Export settings needed by Compose. Normalize and validate workspace paths before using them as mounts.
 
