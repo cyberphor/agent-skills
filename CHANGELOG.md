@@ -5,6 +5,7 @@
 - Added `dockerfiles`, `docker-compose`, `vex`, and `troubleshooting-kubernetes` skills
 - Added `python-django` and `go-bubbletea` skills
 - Added the `github-actions` skill
+- Added a README graph of skill relationships and a table linking every skill
 
 ### Updated
 - Updated `python-django` with the Nostromo memory API example, adapting Django Ninja patterns from Kaiju and Squidfall with owner-scoped queries, constrained upserts, and readable source links
